@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纯 CSS 动画背景颜色变化</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            background: #f5f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .color-box {
+            width: min(320px, 80vw);
+            height: 180px;
+            border-radius: 24px;
+            background-color: #ff6b6b;
+            box-shadow: 0 20px 50px rgba(20, 30, 50, 0.16);
+            animation: change-color 8s ease-in-out infinite;
+        }
+/* 扩展：自定义动画 */
+        @keyframes change-color {
+            0%, 15% {
+                background-color: #ff6b6b;
+            }
+            25%, 40% {
+                background-color: #ffd166;
+            }
+            50%, 65% {
+                background-color: #4ecdc4;
+            }
+            75%, 100% {
+                background-color: #6c63ff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="color-box" aria-label="背景颜色变化的盒子"></div>
+</body>
+</html>

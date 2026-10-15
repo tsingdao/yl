@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web前端长度单位</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: #f5f7fb;
+            padding: 40px 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #18252d;
+            margin-bottom: 40px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 16px rgba(0,0,0,.06);
+        }
+        .card h2 {
+            color: #e75b36;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .card .desc {
+            color: #63727a;
+            font-size: .9rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .demo {
+            background: #f4f0e8;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            font-size: .85rem;
+            color: #155c68;
+        }
+        .demo .box {
+            margin: 10px auto;
+            background: #155c68;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        /* px */
+        .demo-px .box { width: 150px; height: 50px; line-height: 50px; }
+        /* em */
+        .demo-em { font-size: 20px; }
+        .demo-em .box { width: 10em; height: 3em; line-height: 3em; font-size: .8em; }
+        /* rem */
+        .demo-rem .box { width: 10rem; height: 3rem; line-height: 3rem; font-size: .8rem; }
+        /* % */
+        .demo-percent .box { width: 60%; height: 50px; line-height: 50px; }
+        /* vw/vh */
+        .demo-vwvh .box { width: 30vw; max-width: 250px; height: 12vh; line-height: 12vh; font-size: .75rem; }
+        /* vmin/vmax */
+        .demo-vminvmax .box { width: 20vmin; height: 20vmin; line-height: 20vmin; font-size: .75rem; }
+        /* ch */
+        .demo-ch .box { width: 20ch; height: 40px; line-height: 40px; font-size: .75rem; }
+    </style>
+</head>
+<body>
+    <h1>Web 前端长度单位</h1>
+    <div class="grid">
+        <div class="card">
+            <h2>px（像素）</h2>
+            <p class="desc">绝对单位，1px 表示一个屏幕像素点。最常用的固定尺寸单位。</p>
+            <div class="demo demo-px">
+                <div class="box">150px × 50px</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>em</h2>
+            <p class="desc">相对单位，相对于父元素的 font-size。此处父元素为 20px，所以 1em = 20px。</p>
+            <div class="demo demo-em">
+                <div class="box">10em × 3em</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>rem</h2>
+            <p class="desc">相对单位，相对于根元素（html）的 font-size，默认 1rem = 16px。</p>
+            <div class="demo demo-rem">
+                <div class="box">10rem × 3rem</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>%（百分比）</h2>
+            <p class="desc">相对单位，相对于父元素对应属性的值。此处父容器宽度为卡片内容区。</p>
+            <div class="demo demo-percent">
+                <div class="box">宽度 60%</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>vw / vh</h2>
+            <p class="desc">相对单位，1vw = 视口宽度的 1%，1vh = 视口高度的 1%。</p>
+            <div class="demo demo-vwvh">
+                <div class="box">30vw × 12vh</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>vmin / vmax</h2>
+            <p class="desc">vmin = vw 与 vh 中较小的 1%；vmax = 较大的 1%。</p>
+            <div class="demo demo-vminvmax">
+                <div class="box">20vmin × 20vmin</div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>ch</h2>
+            <p class="desc">相对单位，等于数字 "0" 的宽度，常用于限制文本行宽。</p>
+            <div class="demo demo-ch">
+                <div class="box">宽度 20ch</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="袁磊的《高级网页设计》课堂实践作品集入口">
+    <title>袁磊｜高级网页设计课堂实践</title>
+    <style>
+        :root {
+            --ink: #18252d;
+            --muted: #63727a;
+            --paper: #f4f0e8;
+            --line: rgba(24, 37, 45, .16);
+            --orange: #e75b36;
+            --blue: #155c68;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 82% 12%, rgba(231, 91, 54, .18), transparent 25rem),
+                linear-gradient(135deg, #f4f0e8 0%, #e8eee9 100%);
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+
+        .page {
+            width: min(1180px, calc(100% - 48px));
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 32px 0 56px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            animation: appear .7s ease both;
+        }
+
+        .mark {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .mark::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            display: block;
+            background: var(--orange);
+            transform: rotate(45deg);
+        }
+
+        .edition {
+            color: var(--muted);
+            font-size: .75rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        main { flex: 1; padding-top: clamp(64px, 11vh, 124px); }
+
+        .intro {
+            max-width: 770px;
+            animation: rise .8s .1s ease both;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--orange);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        h1 {
+            max-width: 700px;
+            margin: 0;
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: clamp(3.2rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: .98;
+            letter-spacing: -.04em;
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 28px 0 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .works {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: clamp(64px, 10vh, 112px);
+        }
+        .works::after { content: ""; display: table; clear: both; }
+
+        .work-link {
+            position: relative;
+            min-height: 220px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            color: var(--ink);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .42);
+            text-decoration: none;
+            transition: color .3s ease, background .3s ease, transform .3s ease;
+            animation: rise .8s ease both;
+        }
+
+        .work-link:nth-child(2) { animation-delay: .12s; }
+        .work-link:nth-child(3) { animation-delay: .24s; }
+        .work-link:nth-child(4) { animation-delay: .36s; }
+        .work-link:nth-child(5) { animation-delay: .48s; }
+        .work-link:nth-child(1),
+        .work-link:nth-child(2) { grid-column: span 3; }
+        .work-link:nth-child(3),
+        .work-link:nth-child(4),
+        .work-link:nth-child(5) { grid-column: span 2; }
+        .work-link:nth-child(n + 6):nth-child(-n + 17) { grid-column: span 2; }
+        .work-link:nth-child(n + 18) { grid-column: span 3; }
+
+        .work-link::after {
+            content: "↗";
+            position: absolute;
+            top: 22px;
+            right: 26px;
+            color: var(--orange);
+            font-size: 1.8rem;
+            transition: transform .3s ease;
+        }
+
+        .work-link:hover,
+        .work-link:focus-visible {
+            color: #fff;
+            background: var(--blue);
+            transform: translateY(-6px);
+            outline: none;
+        }
+
+        .work-link:hover::after,
+        .work-link:focus-visible::after { transform: translate(4px, -4px); }
+
+        .number {
+            color: var(--orange);
+            font-family: Georgia, serif;
+            font-size: 2.2rem;
+            font-style: italic;
+        }
+
+        .work-link h2 {
+            max-width: 75%;
+            margin: 0;
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: clamp(1.25rem, 2.2vw, 1.8rem);
+            line-height: 1.35;
+        }
+
+        .work-link p {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        .work-link:hover p,
+        .work-link:focus-visible p { color: rgba(255, 255, 255, .72); }
+
+        .prompt {
+            display: grid;
+            grid-template-columns: minmax(150px, .32fr) 1fr;
+            gap: 28px;
+            margin-top: 18px;
+            padding: 24px 28px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .28);
+            animation: rise .8s .6s ease both;
+        }
+
+        .prompt-label {
+            margin: 0;
+            color: var(--orange);
+            font-size: .76rem;
+            font-weight: 700;
+            letter-spacing: .16em;
+        }
+
+        .prompt p:last-child {
+            margin: 0;
+            color: var(--muted);
+            font-size: .9rem;
+            line-height: 1.8;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .76rem;
+            letter-spacing: .08em;
+        }
+
+        @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 620px) {
+            .page { width: min(100% - 32px, 480px); padding-top: 22px; }
+            .edition { font-size: .65rem; }
+            main { padding-top: 72px; }
+            .works { grid-template-columns: 1fr; margin-top: 56px; }
+            .work-link { min-height: 190px; }
+            .work-link:nth-child(n) { grid-column: auto; }
+            .prompt { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+            footer { margin-top: 36px; }
+        }
+
+        @media (min-width: 621px) and (max-width: 880px) {
+            .works { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .work-link:nth-child(n) { grid-column: span 1; }
+            .work-link:nth-child(5) { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="mark">袁磊</div>
+            <div class="edition">ADVANCED WEB DESIGN / 2026</div>
+        </header>
+
+        <main>
+            <section class="intro" aria-labelledby="page-title">
+                <p class="eyebrow">CLASSROOM PRACTICE / 01</p>
+                <h1 id="page-title">把课堂<br>做成网页。</h1>
+                <p class="lead">袁磊的《高级网页设计》课堂实践档案。这里收录本目录中的全部网页练习，从 HTML 基础结构、超链接与图像，到表单和 CSS 样式进阶。</p>
+            </section>
+
+            <nav class="works" aria-label="学习页面">
+                <a class="work-link" href="./2-1.html">
+                    <span class="number">01</span>
+                    <div>
+                        <h2>HTML 元素与页面结构</h2>
+                        <p>诗歌、列表与基础标签</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./2-2.html">
+                    <span class="number">02</span>
+                    <div>
+                        <h2>超链接与图像</h2>
+                        <p>连接网页，探索内容表达</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./3-1.html">
+                    <span class="number">03</span>
+                    <div>
+                        <h2>HTML 表单</h2>
+                        <p>输入、选择与提交控件</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./3-2%20css.html">
+                    <span class="number">04</span>
+                    <div>
+                        <h2>层叠样式表 CSS</h2>
+                        <p>选择器、属性与盒模型</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./4-1%20css2.html">
+                    <span class="number">05</span>
+                    <div>
+                        <h2>CSS 进阶</h2>
+                        <p>层叠、继承与组合选择器</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./5-1%20%E5%B1%82%E5%8F%A0%E4%B8%8E%E7%BB%A7%E6%89%BF.html">
+                    <span class="number">06</span>
+                    <div>
+                        <h2>层叠与继承</h2>
+                        <p>理解样式规则的优先级</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./5-2%20%E7%9B%92%E6%A8%A1%E5%9E%8B.html">
+                    <span class="number">07</span>
+                    <div>
+                        <h2>盒模型</h2>
+                        <p>内容、内边距与边框</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./6-1%20flex.html">
+                    <span class="number">08</span>
+                    <div>
+                        <h2>Flex 弹性布局</h2>
+                        <p>排列与对齐页面元素</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./6-2.html">
+                    <span class="number">09</span>
+                    <div>
+                        <h2>综合布局练习</h2>
+                        <p>运用 CSS 完成页面布局</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./7-1%20%E4%B8%8A%E5%9B%BE%E4%B8%8B%E6%96%87.html">
+                    <span class="number">10</span>
+                    <div>
+                        <h2>上图下文</h2>
+                        <p>图文内容的纵向组合</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./7-2%20%E5%B7%A6%E5%9B%BE%E5%8F%B3%E6%96%87.html">
+                    <span class="number">11</span>
+                    <div>
+                        <h2>左图右文</h2>
+                        <p>图文内容的横向组合</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./8-1%20css3%E9%80%89%E6%8B%A9%E5%99%A8.html">
+                    <span class="number">12</span>
+                    <div>
+                        <h2>CSS3 选择器</h2>
+                        <p>使用选择器定位页面元素</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./9-1%20transiton.html">
+                    <span class="number">13</span>
+                    <div>
+                        <h2>CSS 过渡效果</h2>
+                        <p>探索状态变化与过渡动画</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./10-1-animation.html">
+                    <span class="number">14</span>
+                    <div>
+                        <h2>CSS 动画</h2>
+                        <p>关键帧与动画属性</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./10-2.html">
+                    <span class="number">15</span>
+                    <div>
+                        <h2>动画进阶</h2>
+                        <p>多属性组合与缓动函数</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./10-3.html">
+                    <span class="number">16</span>
+                    <div>
+                        <h2>动画综合练习</h2>
+                        <p>完整动画场景设计</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./10-4.html">
+                    <span class="number">17</span>
+                    <div>
+                        <h2>贝塞尔曲线</h2>
+                        <p>cubic-bezier 速度控制</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./11-1.html">
+                    <span class="number">18</span>
+                    <div>
+                        <h2>Web 前端长度单位</h2>
+                        <p>px、em、rem、vw/vh 等</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./11-2.html">
+                    <span class="number">19</span>
+                    <div>
+                        <h2>CSS3 3D 动画</h2>
+                        <p>perspective 与 3D 变换</p>
+                    </div>
+                </a>
+                <a class="work-link" href="./11-3.html">
+                    <span class="number">20</span>
+                    <div>
+                        <h2>3D 动画实验室</h2>
+                        <p>立方体、翻转与轨道环绕</p>
+                    </div>
+                </a>
+            </nav>
+
+            <section class="prompt" aria-labelledby="prompt-title">
+                <p class="prompt-label" id="prompt-title">THIS PAGE WAS MADE FROM</p>
+                <p>“创建一个新页面，包括本目录下的所有网页的超链接，使用原生代码，不使用cdn，新页面名称为index.html，主题为袁磊的《高级网页设计》课堂实践，美化页面，页面中包括本提示词。”</p>
+            </section>
+        </main>
+
+        <footer>
+            <span>YUAN LEI</span>
+            <span>HTML / CSS / 20 WORKS</span>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewport 背景颜色变化</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background-color: #ff6b6b;
+            color: #fff;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            transition: background-color 0.5s ease;
+        }
+
+        .content {
+            text-align: center;
+            text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .content h1 {
+            margin: 0;
+            font-size: clamp(3rem, 12vw, 7rem);
+            line-height: 1;
+        }
+
+        .content p {
+            margin: 18px 0 0;
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            letter-spacing: 0.2em;
+        }
+
+        @media (min-width: 600px) and (max-width: 1023px) {
+            body {
+                background-color: #4da3ff;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            body {
+                background-color: #42c98b;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="content">
+        <h1>袁磊</h1>
+        <p>Viewport 背景颜色变化</p>
+    </main>
+</body>
+</html>
