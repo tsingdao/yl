@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucide 图标 — SVG 图标</title>
+    <script src="./cdn/lucide.min.js"></script>
+    <style>
+        :root {
+            --ink: #18252d;
+            --muted: #63727a;
+            --paper: #f4f0e8;
+            --line: rgba(24, 37, 45, .16);
+            --orange: #e75b36;
+            --blue: #155c68;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 18% 15%, rgba(21, 92, 104, .15), transparent 28rem),
+                linear-gradient(225deg, #f4f0e8 0%, #e8eee9 100%);
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+
+        .page {
+            width: min(1180px, calc(100% - 48px));
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 32px 0 56px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            animation: appear .7s ease both;
+        }
+
+        .mark {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .mark::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            display: block;
+            background: var(--blue);
+            transform: rotate(45deg);
+        }
+
+        .edition {
+            color: var(--muted);
+            font-size: .75rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        main { flex: 1; padding-top: clamp(48px, 8vh, 96px); }
+
+        .intro {
+            max-width: 770px;
+            animation: rise .8s .1s ease both;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--blue);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -.04em;
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 24px 0 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .section-title {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 56px 0 8px;
+            color: var(--ink);
+        }
+
+        .section-desc {
+            color: var(--muted);
+            font-size: .9rem;
+            margin: 0 0 28px;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .icon-card {
+            background: rgba(255, 255, 255, .6);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+            animation: rise .6s ease both;
+        }
+
+        .icon-card:nth-child(1) { animation-delay: .05s; }
+        .icon-card:nth-child(2) { animation-delay: .08s; }
+        .icon-card:nth-child(3) { animation-delay: .11s; }
+        .icon-card:nth-child(4) { animation-delay: .14s; }
+        .icon-card:nth-child(5) { animation-delay: .17s; }
+        .icon-card:nth-child(6) { animation-delay: .20s; }
+        .icon-card:nth-child(7) { animation-delay: .23s; }
+        .icon-card:nth-child(8) { animation-delay: .26s; }
+        .icon-card:nth-child(9) { animation-delay: .29s; }
+        .icon-card:nth-child(10) { animation-delay: .32s; }
+        .icon-card:nth-child(11) { animation-delay: .35s; }
+        .icon-card:nth-child(12) { animation-delay: .38s; }
+
+        .icon-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(21, 92, 104, .12);
+            background: #fff;
+        }
+
+        .icon-card svg {
+            width: 28px;
+            height: 28px;
+            color: var(--blue);
+            margin-bottom: 14px;
+            transition: transform .3s ease;
+        }
+
+        .icon-card:hover svg {
+            transform: scale(1.15);
+            color: var(--orange);
+        }
+
+        .icon-card .icon-name {
+            font-size: .78rem;
+            color: var(--muted);
+            letter-spacing: .04em;
+        }
+
+        .icon-card .icon-method {
+            font-size: .68rem;
+            color: var(--muted);
+            opacity: .6;
+            margin-top: 4px;
+            font-family: "Consolas", monospace;
+        }
+
+        .demo-area {
+            margin-top: 56px;
+            padding: 40px;
+            background: rgba(255, 255, 255, .5);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .demo-area h2 {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: 1.4rem;
+            margin: 0 0 8px;
+        }
+
+        .demo-area p {
+            color: var(--muted);
+            font-size: .88rem;
+            margin: 0 0 24px;
+        }
+
+        .demo-icons {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .demo-item {
+            text-align: center;
+        }
+
+        .demo-item svg {
+            width: 40px;
+            height: 40px;
+            color: var(--blue);
+            margin-bottom: 10px;
+            transition: color .3s ease, transform .3s ease;
+        }
+
+        .demo-item:hover svg {
+            color: var(--orange);
+            transform: scale(1.2);
+        }
+
+        .demo-item span {
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        .size-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 28px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .size-demo .label {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .code-block {
+            background: var(--ink);
+            color: #e8eee9;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-top: 32px;
+            text-align: left;
+            overflow-x: auto;
+            font-family: "Consolas", monospace;
+            font-size: .82rem;
+            line-height: 1.8;
+        }
+
+        .code-block .comment { color: #7a8f99; }
+        .code-block .keyword { color: #e75b36; }
+        .code-block .string { color: #7ec699; }
+        .code-block .function { color: #d4a853; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 48px;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: .88rem;
+            font-weight: 600;
+            transition: color .2s ease;
+        }
+
+        .back-link:hover { color: var(--orange); }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .76rem;
+            letter-spacing: .08em;
+        }
+
+        @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 620px) {
+            .page { width: min(100% - 32px, 480px); padding-top: 22px; }
+            .icon-grid { grid-template-columns: repeat(2, 1fr); }
+            .demo-area { padding: 28px 20px; }
+            .demo-icons { gap: 20px; }
+            .edition { font-size: .65rem; }
+            footer { margin-top: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="mark">袁磊</div>
+            <div class="edition">LUCIDE / SVG 图标</div>
+        </header>
+
+        <main>
+            <section class="intro" aria-labelledby="page-title">
+                <p class="eyebrow">ICON LIBRARIES / 02</p>
+                <h1 id="page-title">Lucide<br>SVG 图标</h1>
+                <p class="lead">Lucide 是基于 Feather Icons 的开源 SVG 图标库。它使用 JavaScript 在运行时将 <code>&lt;i&gt;</code> 标签替换为内联 SVG，每个图标都是独立的 SVG 路径，支持精确的样式控制。</p>
+            </section>
+
+            <h2 class="section-title">常用图标展示</h2>
+            <p class="section-desc">Lucide Icons — 通过 <code>lucide.createIcons()</code> 自动将 <code>data-lucide</code> 属性替换为 SVG</p>
+
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <i data-lucide="heart"></i>
+                    <div class="icon-name">heart</div>
+                    <div class="icon-method">data-lucide="heart"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="star"></i>
+                    <div class="icon-name">star</div>
+                    <div class="icon-method">data-lucide="star"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="user"></i>
+                    <div class="icon-name">user</div>
+                    <div class="icon-method">data-lucide="user"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="home"></i>
+                    <div class="icon-name">home</div>
+                    <div class="icon-method">data-lucide="home"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="search"></i>
+                    <div class="icon-name">search</div>
+                    <div class="icon-method">data-lucide="search"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="mail"></i>
+                    <div class="icon-name">mail</div>
+                    <div class="icon-method">data-lucide="mail"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="settings"></i>
+                    <div class="icon-name">settings</div>
+                    <div class="icon-method">data-lucide="settings"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="bell"></i>
+                    <div class="icon-name">bell</div>
+                    <div class="icon-method">data-lucide="bell"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="camera"></i>
+                    <div class="icon-name">camera</div>
+                    <div class="icon-method">data-lucide="camera"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="music"></i>
+                    <div class="icon-name">music</div>
+                    <div class="icon-method">data-lucide="music"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="bookmark"></i>
+                    <div class="icon-name">bookmark</div>
+                    <div class="icon-method">data-lucide="bookmark"</div>
+                </div>
+                <div class="icon-card">
+                    <i data-lucide="download"></i>
+                    <div class="icon-name">download</div>
+                    <div class="icon-method">data-lucide="download"</div>
+                </div>
+            </div>
+
+            <div class="demo-area">
+                <h2>尺寸与颜色</h2>
+                <p>通过 CSS 的 width、height 和 color 属性即可控制 SVG 图标大小和颜色</p>
+
+                <div class="size-demo">
+                    <div>
+                        <i data-lucide="star" style="width:16px;height:16px;"></i>
+                        <div class="label">16px</div>
+                    </div>
+                    <div>
+                        <i data-lucide="star" style="width:24px;height:24px;"></i>
+                        <div class="label">24px</div>
+                    </div>
+                    <div>
+                        <i data-lucide="star" style="width:32px;height:32px;"></i>
+                        <div class="label">32px</div>
+                    </div>
+                    <div>
+                        <i data-lucide="star" style="width:48px;height:48px;"></i>
+                        <div class="label">48px</div>
+                    </div>
+                    <div>
+                        <i data-lucide="star" style="width:64px;height:64px;"></i>
+                        <div class="label">64px</div>
+                    </div>
+                </div>
+
+                <div class="demo-icons">
+                    <div class="demo-item">
+                        <i data-lucide="thumbs-up"></i>
+                        <span>点赞</span>
+                    </div>
+                    <div class="demo-item">
+                        <i data-lucide="share-2"></i>
+                        <span>分享</span>
+                    </div>
+                    <div class="demo-item">
+                        <i data-lucide="bookmark"></i>
+                        <span>收藏</span>
+                    </div>
+                    <div class="demo-item">
+                        <i data-lucide="send"></i>
+                        <span>发送</span>
+                    </div>
+                    <div class="demo-item">
+                        <i data-lucide="download"></i>
+                        <span>下载</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <span class="comment">&lt;!-- 引入 JS --&gt;</span><br>
+                    <span class="keyword">&lt;script</span> <span class="keyword">src</span>=<span class="string">"./cdn/lucide/lucide.min.js"</span><span class="keyword">&gt;&lt;/script&gt;</span><br><br>
+                    <span class="comment">&lt;!-- 使用图标（HTML 中只需 data-lucide 属性） --&gt;</span><br>
+                    <span class="keyword">&lt;i</span> <span class="keyword">data-lucide</span>=<span class="string">"heart"</span><span class="keyword">&gt;&lt;/i&gt;</span><br>
+                    <span class="keyword">&lt;i</span> <span class="keyword">data-lucide</span>=<span class="string">"star"</span><span class="keyword">&gt;&lt;/i&gt;</span><br><br>
+                    <span class="comment">&lt;!-- JavaScript 初始化（页面加载后调用） --&gt;</span><br>
+                    <span class="function">lucide.createIcons()</span>();
+                </div>
+            </div>
+
+            <a class="back-link" href="./index.html">← 返回首页</a>
+        </main>
+
+        <footer>
+            <span>YUAN LEI</span>
+            <span>LUCIDE / SVG 图标</span>
+        </footer>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

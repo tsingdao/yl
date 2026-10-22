@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome 图标 — 字体图标</title>
+    <link rel="stylesheet" href="./cdn/all.min.css">
+    <style>
+        :root {
+            --ink: #18252d;
+            --muted: #63727a;
+            --paper: #f4f0e8;
+            --line: rgba(24, 37, 45, .16);
+            --orange: #e75b36;
+            --blue: #155c68;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 82% 12%, rgba(231, 91, 54, .18), transparent 25rem),
+                linear-gradient(135deg, #f4f0e8 0%, #e8eee9 100%);
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+
+        .page {
+            width: min(1180px, calc(100% - 48px));
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 32px 0 56px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            animation: appear .7s ease both;
+        }
+
+        .mark {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+        }
+
+        .mark::before {
+            content: "";
+            width: 13px;
+            height: 13px;
+            display: block;
+            background: var(--orange);
+            transform: rotate(45deg);
+        }
+
+        .edition {
+            color: var(--muted);
+            font-size: .75rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        main { flex: 1; padding-top: clamp(48px, 8vh, 96px); }
+
+        .intro {
+            max-width: 770px;
+            animation: rise .8s .1s ease both;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--orange);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -.04em;
+        }
+
+        .lead {
+            max-width: 620px;
+            margin: 24px 0 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.9;
+        }
+
+        .section-title {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 56px 0 8px;
+            color: var(--ink);
+        }
+
+        .section-desc {
+            color: var(--muted);
+            font-size: .9rem;
+            margin: 0 0 28px;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .icon-card {
+            background: rgba(255, 255, 255, .6);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+            animation: rise .6s ease both;
+        }
+
+        .icon-card:nth-child(1) { animation-delay: .05s; }
+        .icon-card:nth-child(2) { animation-delay: .08s; }
+        .icon-card:nth-child(3) { animation-delay: .11s; }
+        .icon-card:nth-child(4) { animation-delay: .14s; }
+        .icon-card:nth-child(5) { animation-delay: .17s; }
+        .icon-card:nth-child(6) { animation-delay: .20s; }
+        .icon-card:nth-child(7) { animation-delay: .23s; }
+        .icon-card:nth-child(8) { animation-delay: .26s; }
+        .icon-card:nth-child(9) { animation-delay: .29s; }
+        .icon-card:nth-child(10) { animation-delay: .32s; }
+        .icon-card:nth-child(11) { animation-delay: .35s; }
+        .icon-card:nth-child(12) { animation-delay: .38s; }
+
+        .icon-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(21, 92, 104, .12);
+            background: #fff;
+        }
+
+        .icon-card i {
+            font-size: 2.2rem;
+            color: var(--blue);
+            margin-bottom: 14px;
+            display: block;
+            transition: transform .3s ease;
+        }
+
+        .icon-card:hover i {
+            transform: scale(1.15);
+            color: var(--orange);
+        }
+
+        .icon-card .icon-name {
+            font-size: .78rem;
+            color: var(--muted);
+            letter-spacing: .04em;
+        }
+
+        .icon-card .icon-class {
+            font-size: .68rem;
+            color: var(--muted);
+            opacity: .6;
+            margin-top: 4px;
+            font-family: "Consolas", monospace;
+        }
+
+        .demo-area {
+            margin-top: 56px;
+            padding: 40px;
+            background: rgba(255, 255, 255, .5);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .demo-area h2 {
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: 1.4rem;
+            margin: 0 0 8px;
+        }
+
+        .demo-area p {
+            color: var(--muted);
+            font-size: .88rem;
+            margin: 0 0 24px;
+        }
+
+        .demo-icons {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .demo-item {
+            text-align: center;
+        }
+
+        .demo-item i {
+            font-size: 2.8rem;
+            color: var(--blue);
+            display: block;
+            margin-bottom: 10px;
+            transition: color .3s ease, transform .3s ease;
+        }
+
+        .demo-item:hover i {
+            color: var(--orange);
+            transform: scale(1.2);
+        }
+
+        .demo-item span {
+            font-size: .78rem;
+            color: var(--muted);
+        }
+
+        .size-demo {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 28px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .size-demo i {
+            color: var(--blue);
+            display: block;
+        }
+
+        .size-demo .label {
+            font-size: .72rem;
+            color: var(--muted);
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .code-block {
+            background: var(--ink);
+            color: #e8eee9;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-top: 32px;
+            text-align: left;
+            overflow-x: auto;
+            font-family: "Consolas", monospace;
+            font-size: .82rem;
+            line-height: 1.8;
+        }
+
+        .code-block .comment { color: #7a8f99; }
+        .code-block .tag { color: #e75b36; }
+        .code-block .attr { color: #d4a853; }
+        .code-block .value { color: #7ec699; }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 48px;
+            color: var(--blue);
+            text-decoration: none;
+            font-size: .88rem;
+            font-weight: 600;
+            transition: color .2s ease;
+        }
+
+        .back-link:hover { color: var(--orange); }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: .76rem;
+            letter-spacing: .08em;
+        }
+
+        @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 620px) {
+            .page { width: min(100% - 32px, 480px); padding-top: 22px; }
+            .icon-grid { grid-template-columns: repeat(2, 1fr); }
+            .demo-area { padding: 28px 20px; }
+            .demo-icons { gap: 20px; }
+            .edition { font-size: .65rem; }
+            footer { margin-top: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div class="mark">袁磊</div>
+            <div class="edition">FONT AWESOME / 字体图标</div>
+        </header>
+
+        <main>
+            <section class="intro" aria-labelledby="page-title">
+                <p class="eyebrow">ICON LIBRARIES / 01</p>
+                <h1 id="page-title">Font Awesome<br>字体图标</h1>
+                <p class="lead">Font Awesome 使用字体图标（Icon Font）技术，将图标映射为 Unicode 字符，通过 CSS 伪元素或类名来显示图标。只需引入一个 CSS 文件和字体文件即可使用全部图标。</p>
+            </section>
+
+            <h2 class="section-title">常用图标展示</h2>
+            <p class="section-desc">Font Awesome 6 Free 版本 — 通过 <code>.fas</code> / <code>.far</code> / <code>.fab</code> 前缀调用</p>
+
+            <div class="icon-grid">
+                <div class="icon-card">
+                    <i class="fas fa-heart"></i>
+                    <div class="icon-name">heart</div>
+                    <div class="icon-class">fas fa-heart</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-star"></i>
+                    <div class="icon-name">star</div>
+                    <div class="icon-class">fas fa-star</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-user"></i>
+                    <div class="icon-name">user</div>
+                    <div class="icon-class">fas fa-user</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-home"></i>
+                    <div class="icon-name">home</div>
+                    <div class="icon-class">fas fa-home</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-search"></i>
+                    <div class="icon-name">search</div>
+                    <div class="icon-class">fas fa-search</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-envelope"></i>
+                    <div class="icon-name">envelope</div>
+                    <div class="icon-class">fas fa-envelope</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-cog"></i>
+                    <div class="icon-name">cog</div>
+                    <div class="icon-class">fas fa-cog</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-bell"></i>
+                    <div class="icon-name">bell</div>
+                    <div class="icon-class">fas fa-bell</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-camera"></i>
+                    <div class="icon-name">camera</div>
+                    <div class="icon-class">fas fa-camera</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-music"></i>
+                    <div class="icon-name">music</div>
+                    <div class="icon-class">fas fa-music</div>
+                </div>
+                <div class="icon-card">
+                    <i class="fas fa-heart"></i>
+                    <div class="icon-name">heart (regular)</div>
+                    <div class="icon-class">far fa-heart</div>
+                </div>
+                <div class="icon-card">
+                    <i class="far fa-star"></i>
+                    <div class="icon-name">star (regular)</div>
+                    <div class="icon-class">far fa-star</div>
+                </div>
+            </div>
+
+            <div class="demo-area">
+                <h2>尺寸与颜色</h2>
+                <p>通过 CSS 的 font-size 和 color 属性即可控制图标大小和颜色</p>
+
+                <div class="size-demo">
+                    <div>
+                        <i class="fas fa-star fa-xs"></i>
+                        <div class="label">fa-xs</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-star fa-sm"></i>
+                        <div class="label">fa-sm</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-star fa-lg"></i>
+                        <div class="label">fa-lg</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-star fa-2x"></i>
+                        <div class="label">fa-2x</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-star fa-3x"></i>
+                        <div class="label">fa-3x</div>
+                    </div>
+                    <div>
+                        <i class="fas fa-star fa-5x"></i>
+                        <div class="label">fa-5x</div>
+                    </div>
+                </div>
+
+                <div class="demo-icons">
+                    <div class="demo-item">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>点赞</span>
+                    </div>
+                    <div class="demo-item">
+                        <i class="fas fa-share-alt"></i>
+                        <span>分享</span>
+                    </div>
+                    <div class="demo-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>收藏</span>
+                    </div>
+                    <div class="demo-item">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>发送</span>
+                    </div>
+                    <div class="demo-item">
+                        <i class="fas fa-download"></i>
+                        <span>下载</span>
+                    </div>
+                </div>
+
+                <div class="code-block">
+                    <span class="comment">&lt;!-- 引入 CSS --&gt;</span><br>
+                    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span> <span class="attr">href</span>=<span class="value">"./cdn/fontawesome/all.min.css"</span><span class="tag">&gt;</span><br><br>
+                    <span class="comment">&lt;!-- 使用图标 --&gt;</span><br>
+                    <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="value">"fas fa-heart"</span><span class="tag">&gt;&lt;/i&gt;</span><br>
+                    <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="value">"far fa-star"</span><span class="tag">&gt;&lt;/i&gt;</span><br>
+                    <span class="tag">&lt;i</span> <span class="attr">class</span>=<span class="value">"fas fa-cog fa-spin"</span><span class="tag">&gt;&lt;/i&gt;</span>
+                </div>
+            </div>
+
+            <a class="back-link" href="./index.html">← 返回首页</a>
+        </main>
+
+        <footer>
+            <span>YUAN LEI</span>
+            <span>FONT AWESOME / 字体图标</span>
+        </footer>
+    </div>
+</body>
+</html>
