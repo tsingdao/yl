@@ -14,11 +14,12 @@ Static HTML/CSS course portfolio. No build tools, no package manager, no framewo
 ## Naming rules
 
 - All variable names (JS), CSS class names, and id names must start with the `yl_` prefix (e.g., `yl_box`, `yl_main-nav`, `yl_count`)
-- Every `.html` page must include an HTML comment near the top with the student name, date, and feature name:
+- Every `.html` page must include an HTML comment near the top with the student name, creation time, the AI model used, and the feature name:
   ```html
-  <!-- 姓名：袁磊，日期：2026-10-22，功能名称：XXX -->
+  <!-- 姓名：袁磊，建立时间：2026-10-26，模型：GLM-5.3-Flash，功能名称：XXX -->
   ```
-  - 日期 = the date the page is created or last meaningfully modified
+  - 建立时间 = the date the page is created
+  - 模型 = the AI model that generated the page (e.g., GLM-5.3-Flash)
   - 功能名称 = the feature/exercise name of that page
 
 ## Conventions

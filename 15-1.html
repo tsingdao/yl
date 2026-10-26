@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!-- 姓名：袁磊，日期：2026-10-26，功能名称：逢七过（一百个盒子） -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15-1 逢七过 · 一百个盒子</title>
+    <style>
+        :root {
+            --yl-ink: #18252d;
+            --yl-muted: #63727a;
+            --yl-line: rgba(24, 37, 45, .16);
+            --yl-orange: #e75b36;
+            --yl-blue: #155c68;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--yl-ink);
+            background:
+                radial-gradient(circle at 88% 6%, rgba(231, 91, 54, .14), transparent 20rem),
+                linear-gradient(135deg, #f4f0e8 0%, #e8eee9 100%);
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+
+        .yl_page {
+            width: min(1080px, calc(100% - 48px));
+            margin: 0 auto;
+            padding: 36px 0 48px;
+        }
+
+        .yl_header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+        }
+
+        .yl_eyebrow {
+            margin: 0 0 14px;
+            color: var(--yl-orange);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+        }
+
+        .yl_title {
+            margin: 0;
+            font-family: "Noto Serif SC", "SimSun", serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .yl_lead {
+            max-width: 640px;
+            margin: 14px 0 0;
+            color: var(--yl-muted);
+            font-size: .95rem;
+            line-height: 1.9;
+        }
+
+        .yl_home {
+            flex: none;
+            margin-top: 6px;
+            padding: 9px 18px;
+            border: 1px solid var(--yl-line);
+            border-radius: 999px;
+            color: var(--yl-ink);
+            background: rgba(255, 255, 255, .55);
+            text-decoration: none;
+            font-size: .85rem;
+            transition: all .3s ease;
+        }
+
+        .yl_home:hover {
+            color: #fff;
+            background: var(--yl-blue);
+            border-color: var(--yl-blue);
+        }
+
+        .yl_grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+            gap: 10px;
+            margin-top: 36px;
+        }
+
+        .yl_box {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--yl-line);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .6);
+            font-family: Consolas, monospace;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: default;
+            transition: transform .25s ease, border-color .25s ease, color .25s ease;
+        }
+
+        .yl_box:hover {
+            transform: translateY(-3px);
+            border-color: var(--yl-blue);
+            color: var(--yl-blue);
+        }
+
+        .yl_box--skip {
+            border: 1.5px dashed rgba(231, 91, 54, .55);
+            background: rgba(231, 91, 54, .06);
+        }
+
+        .yl_box--skip:hover {
+            border-color: var(--yl-orange);
+            color: var(--yl-orange);
+        }
+
+        .yl_stat {
+            margin: 24px 0 0;
+            color: var(--yl-muted);
+            font-size: .9rem;
+        }
+
+        .yl_legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 12px;
+            color: var(--yl-muted);
+            font-size: .82rem;
+        }
+
+        .yl_legend span { display: inline-flex; align-items: center; gap: 8px; }
+
+        .yl_dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .yl_dot--num {
+            border: 1px solid var(--yl-line);
+            background: rgba(255, 255, 255, .8);
+        }
+
+        .yl_dot--skip {
+            border: 1.5px dashed rgba(231, 91, 54, .55);
+            background: rgba(231, 91, 54, .06);
+        }
+
+        .yl_foot {
+            margin-top: 36px;
+            padding-top: 16px;
+            border-top: 1px solid var(--yl-line);
+            display: flex;
+            justify-content: space-between;
+            color: var(--yl-muted);
+            font-size: .76rem;
+            letter-spacing: .08em;
+        }
+
+        @media (max-width: 620px) {
+            .yl_page { width: calc(100% - 32px); }
+            .yl_header { flex-direction: column; }
+            .yl_home { align-self: flex-start; }
+            .yl_grid { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <div class="yl_page">
+        <header class="yl_header">
+            <div>
+                <p class="yl_eyebrow">JAVASCRIPT / 15-1</p>
+                <h1 class="yl_title">逢七过 · 一百个盒子</h1>
+                <p class="yl_lead">游戏规则：凡是 <strong>7 的倍数</strong>，或者数字中<strong>含有 7</strong>（个位是 7、十位是 7……）的数都要"过"。满足规则的盒子留空（悬停可查看被跳过的数字），其余盒子正常显示数字。</p>
+            </div>
+            <a class="yl_home" href="./index.html">← 返回首页</a>
+        </header>
+
+        <main class="yl_grid" id="yl_grid"></main>
+
+        <p class="yl_stat" id="yl_stat"></p>
+
+        <div class="yl_legend">
+            <span><i class="yl_dot yl_dot--num"></i>显示数字（不满足"过"）</span>
+            <span><i class="yl_dot yl_dot--skip"></i>空盒子（7 的倍数或含 7）</span>
+        </div>
+
+        <footer class="yl_foot">
+            <span>YUAN LEI</span>
+            <span>JAVASCRIPT / SEVENS GAME</span>
+        </footer>
+    </div>
+
+    <script>
+        // 逢七过规则：7 的倍数或含有数字 7 的数需要"过"，变量与类名均以 yl_ 开头
+        function yl_isSkip(yl_n) {
+            return yl_n % 7 === 0 || String(yl_n).indexOf("7") !== -1;
+        }
+
+        var yl_grid = document.getElementById("yl_grid");
+        var yl_skipCount = 0;
+        for (var yl_i = 1; yl_i <= 100; yl_i++) {
+            var yl_box = document.createElement("div");
+            if (yl_isSkip(yl_i)) {
+                yl_skipCount++;
+                yl_box.className = "yl_box yl_box--skip";
+                yl_box.title = yl_i + "：逢七过";
+            } else {
+                yl_box.className = "yl_box";
+                yl_box.textContent = yl_i;
+            }
+            yl_grid.appendChild(yl_box);
+        }
+        document.getElementById("yl_stat").textContent = "共 100 个盒子，其中需要“过”的空盒子 " + yl_skipCount + " 个，显示数字 " + (100 - yl_skipCount) + " 个。";
+    </script>
+</body>
+</html>
